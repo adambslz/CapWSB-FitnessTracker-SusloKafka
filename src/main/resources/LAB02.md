@@ -1,11 +1,26 @@
+Przejdź do głównej zawartości
+Adam Susło
+Platforma edukacyjna
+Moje terminy
+Moje kursy
+Repozytorium/Manuale
+Warunki
+Digiteka - Cyfrowe Materiały Dydaktyczne
+Wsparcie
+WDTB_WKO_INF_NWhb_Lato 2024/2025
+Spring - Wojciech Koszela
+Spring - LAB02
+
+Spring - LAB02
+Wymagania zaliczenia
 # LABORATORIUM 02
 
 Zadania proszę realizować zgodnie z własnym tempem. Zadania mają pomóc w przygotowaniu do Egzaminu oraz zrozumieniu
 Frameworka Spring.
-Termin upływa po 7 dniach od rozpoczęciu laboratorium. Po przesłaniu zadania proszę o zaznaczenie na Moodle wykonanie
+Termin upływa po 14 dniach od rozpoczęciu laboratorium. Po przesłaniu zadania proszę o zaznaczenie na Moodle wykonanie
 zadania.
 
-## ZADANIE 1. Sieciowe API do operacji typu CRUD na klientach
+## ZADANIE 1. Sieciowe API do operacji typu CRUD na użytkownikach
 
 ### Potrzeba biznesowa
 
@@ -46,3 +61,6 @@ Stworzone API powinno pozwalać na:
 - [ ] do kodu powinna zostać dołączona wyeksportowana kolekcja zapytań z programu Postman, pozwalająca przetestować
   stworzone API
 - [ ] rozwiązanie powinno wykorzystywać rekordy (Java 16+) do definicji obiektów transferu danych (DTO)
+  Ostatnia modyfikacja: niedziela, 11 maja 2025, 09:16
+  Jesteś zalogowany(a) jako Adam Susło (Wyloguj)
+  Copyright @ 2025 Merito
