@@ -8,6 +8,7 @@ import pl.wsb.fitnesstracker.user.api.User;
 import pl.wsb.fitnesstracker.user.api.UserProvider;
 import pl.wsb.fitnesstracker.user.api.UserService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,11 @@ class UserServiceImpl implements UserService, UserProvider {
         if(userRepository.existsById(userId)){
             userRepository.deleteById(userId);
         }
+    }
+
+    @Override
+    public void updateUser(Long userId, pl.wsb.fitnesstracker.user.api.UserDto userDto) {
+
     }
 
     @Override
