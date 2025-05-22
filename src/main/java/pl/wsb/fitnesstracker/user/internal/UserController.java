@@ -58,4 +58,25 @@ class UserController {
                 .map(user -> List.of(userMapper.toDto(user)))
                 .orElseGet(() -> new ArrayList<>());
     }
+
+    @GetMapping("/{id}")
+    public UserDto getUserById(@PathVariable Long id) throws InterruptedException { //@PathVariable wiążę id z adresu URL do parametru metody
+        return userService.getUser(id)
+                .map(userMapper::toDto)
+                .orElseThrow(() -> new EntityNotFoundException("User with id " + id + " not found"));
+    }
+
+    @PutMapping("/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateUser(@PathVariable Long userId, @RequestBody UserDto userDto) throws InterruptedException {
+        userService.updateUser(userId, userDto);
+    }
+
+    @GetMapping("older/{date}")
+    public List<UserDto> getOlderUsers(@PathVariable("date") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) LocalDate date){
+        return userService.findUsersOlderThan(date)
+                .stream()
+                .map(userMapper::toDto)
+                .toList();
+    }
 }

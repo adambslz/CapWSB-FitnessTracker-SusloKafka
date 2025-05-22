@@ -49,4 +49,29 @@ class UserServiceImpl implements UserService, UserProvider {
         }
     }
 
+    @Override
+    public void updateUser(Long userId, UserDto userDto){
+
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id " + userId));
+
+        userRepository.deleteById(userId);
+
+        User updatedUser = new User(
+                userDto.firstName(),
+                userDto.lastName(),
+                userDto.birthdate(),
+                userDto.email()
+        );
+
+        userRepository.save(updatedUser);
+    }
+
+    @Override
+    public List<User> findUsersOlderThan(LocalDate date){
+        return userRepository.findAll()
+                .stream()
+                .filter(user -> user.getBirthdate().isBefore(date))
+                .toList();
+    }
 }
