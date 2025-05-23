@@ -1,5 +1,6 @@
 package pl.wsb.fitnesstracker.user.internal;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import pl.wsb.fitnesstracker.user.api.User;
 import pl.wsb.fitnesstracker.user.api.UserProvider;
 import pl.wsb.fitnesstracker.user.api.UserService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,4 +50,34 @@ class UserServiceImpl implements UserService, UserProvider {
         }
     }
 
+    @Override
+    public void updateUser(Long userId, pl.wsb.fitnesstracker.user.api.UserDto userDto) {
+
+    }
+
+    @Override
+    public void updateUser(Long userId, UserDto userDto){
+
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id " + userId));
+
+        userRepository.deleteById(userId);
+
+        User updatedUser = new User(
+                userDto.firstName(),
+                userDto.lastName(),
+                userDto.birthdate(),
+                userDto.email()
+        );
+
+        userRepository.save(updatedUser);
+    }
+
+    @Override
+    public List<User> findUsersOlderThan(LocalDate date){
+        return userRepository.findAll()
+                .stream()
+                .filter(user -> user.getBirthdate().isBefore(date))
+                .toList();
+    }
 }
