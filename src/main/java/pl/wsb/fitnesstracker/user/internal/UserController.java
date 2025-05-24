@@ -70,6 +70,10 @@ class UserController {
         userService.deleteUser(userId);
     }
 
+    /**
+     * @param email
+     * @return
+     */
     @GetMapping("/email")
     public List<UserDto> getUsersByEmail(@RequestParam String email) {
         return userService.getUserByEmail(email)

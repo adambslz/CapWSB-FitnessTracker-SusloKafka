@@ -29,6 +29,10 @@ class UserServiceImpl implements UserService, UserProvider {
         }
     }
 
+    /**
+     * @param user
+     * @return
+     */
     @Override
     public User createUser(final User user) {
         log.info("Creating User {}", user);
@@ -38,21 +42,35 @@ class UserServiceImpl implements UserService, UserProvider {
         return userRepository.save(user);
     }
 
+    /**
+     * @param userId id of the user to be searched
+     * @return
+     */
     @Override
     public Optional<User> getUser(final Long userId) {
         return userRepository.findById(userId);
     }
 
+    /**
+     * @param email The email of the user to be searched
+     * @return
+     */
     @Override
     public Optional<User> getUserByEmail(final String email) {
         return userRepository.findByEmail(email);
     }
 
+    /**
+     * @return
+     */
     @Override
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
+    /**
+     * @param userId
+     */
     @Override
     public  void deleteUser(Long userId){
         if(userRepository.existsById(userId)){
@@ -67,6 +85,10 @@ class UserServiceImpl implements UserService, UserProvider {
     }
     */
 
+    /**
+     * @param userId
+     * @param userDto
+     */
     @Override
     public void updateUser(Long userId, UserDto userDto){
 
@@ -92,6 +114,10 @@ class UserServiceImpl implements UserService, UserProvider {
         userRepository.save(existingUser);
     }
 
+    /**
+     * @param date
+     * @return
+     */
     @Override
     public List<User> findUsersOlderThan(LocalDate date){
         return userRepository.findAll()

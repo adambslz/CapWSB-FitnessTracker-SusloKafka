@@ -10,12 +10,23 @@ import java.util.List;
  */
 public interface UserService {
 
+    /**
+     * @param user
+     * @return
+     */
     User createUser(User user);
 
+    /**
+     * @param userId
+     */
     void deleteUser(Long userId);
 
     //void updateUser(Long userId, pl.wsb.fitnesstracker.user.api.UserDto userDto);
 
+    /**
+     * @param userId
+     * @param userDto
+     */
     void updateUser(Long userId, UserDto userDto);
 
     List<User> findUsersOlderThan(LocalDate date);

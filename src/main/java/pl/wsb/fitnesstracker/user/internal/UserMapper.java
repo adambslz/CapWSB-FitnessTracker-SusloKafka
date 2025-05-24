@@ -6,6 +6,10 @@ import pl.wsb.fitnesstracker.user.api.User;
 @Component
 class UserMapper {
 
+    /**
+     * @param user
+     * @return
+     */
     UserDto toDto(User user) {
         return new UserDto(user.getId(),
                 user.getFirstName(),
@@ -14,6 +18,10 @@ class UserMapper {
                 user.getEmail());
     }
 
+    /**
+     * @param userDto
+     * @return
+     */
     User toEntity(UserDto userDto) {
         return new User(
                 userDto.firstName(),
@@ -22,6 +30,10 @@ class UserMapper {
                 userDto.email());
     }
 
+    /**
+     * @param user
+     * @return
+     */
     SimpleUserDto toSimpleDto(User user) {
         return new SimpleUserDto(user.getId(),
                 user.getFirstName(),

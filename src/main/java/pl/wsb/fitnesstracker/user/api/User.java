@@ -31,6 +31,12 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    /**
+     * @param firstName
+     * @param lastName
+     * @param birthdate
+     * @param email
+     */
     public User(
             final String firstName,
             final String lastName,
