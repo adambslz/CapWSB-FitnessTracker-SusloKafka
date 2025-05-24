@@ -20,6 +20,9 @@ class UserController {
 
     private final UserMapper userMapper;
 
+    /**
+     * @return
+     */
     @GetMapping
     public List<UserDto> getAllUsers() {
         return userService.findAllUsers()
@@ -28,6 +31,9 @@ class UserController {
                 .toList();
     }
 
+    /**
+     * @return
+     */
     @GetMapping("/simple")
     public List<SimpleUserDto> getSimpleUsers(){
         return userService.findAllUsers()
@@ -36,6 +42,11 @@ class UserController {
                 .toList();
     }
 
+    /**
+     * @param userDto
+     * @return
+     * @throws InterruptedException
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED) //zwraca kod 201 jeżeli zasób został poprawnie utworzony
     public UserDto addUser(@RequestBody UserDto userDto) throws InterruptedException {
@@ -49,6 +60,10 @@ class UserController {
         //return null;
     }
 
+    /**
+     * @param userId
+     * @throws InterruptedException
+     */
     @DeleteMapping("/{userId}") //Usuwanie użytkownika po id
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long userId) throws InterruptedException {
@@ -62,6 +77,11 @@ class UserController {
                 .orElseGet(() -> new ArrayList<>());
     }
 
+    /**
+     * @param id
+     * @return
+     * @throws InterruptedException
+     */
     @GetMapping("/{id}")
     public UserDto getUserById(@PathVariable Long id) throws InterruptedException { //@PathVariable wiążę id z adresu URL do parametru metody
         return userService.getUser(id)
@@ -69,12 +89,21 @@ class UserController {
                 .orElseThrow(() -> new EntityNotFoundException("User with id " + id + " not found"));
     }
 
+    /**
+     * @param userId
+     * @param userDto
+     * @throws InterruptedException
+     */
     @PutMapping("/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateUser(@PathVariable Long userId, @RequestBody UserDto userDto) throws InterruptedException {
         userService.updateUser(userId, userDto);
     }
 
+    /**
+     * @param date
+     * @return
+     */
     @GetMapping("older/{date}")
     public List<UserDto> getOlderUsers(@PathVariable("date") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) LocalDate date){
         return userService.findUsersOlderThan(date)

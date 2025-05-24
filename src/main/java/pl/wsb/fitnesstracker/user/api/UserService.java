@@ -14,7 +14,7 @@ public interface UserService {
 
     void deleteUser(Long userId);
 
-    void updateUser(Long userId, pl.wsb.fitnesstracker.user.api.UserDto userDto);
+    //void updateUser(Long userId, pl.wsb.fitnesstracker.user.api.UserDto userDto);
 
     void updateUser(Long userId, UserDto userDto);
 

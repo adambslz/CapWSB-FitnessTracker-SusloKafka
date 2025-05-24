@@ -19,6 +19,16 @@ class UserServiceImpl implements UserService, UserProvider {
 
     private final UserRepository userRepository;
 
+    private void setUserId(User user, Long id) {
+        try {
+            java.lang.reflect.Field idField = User.class.getDeclaredField("id");
+            idField.setAccessible(true);
+            idField.set(user, id);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException("Failed to set user ID via reflection", e);
+        }
+    }
+
     @Override
     public User createUser(final User user) {
         log.info("Creating User {}", user);
@@ -50,10 +60,12 @@ class UserServiceImpl implements UserService, UserProvider {
         }
     }
 
+    /*
     @Override
     public void updateUser(Long userId, pl.wsb.fitnesstracker.user.api.UserDto userDto) {
 
     }
+    */
 
     @Override
     public void updateUser(Long userId, UserDto userDto){
@@ -61,8 +73,13 @@ class UserServiceImpl implements UserService, UserProvider {
         User existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id " + userId));
 
-        userRepository.deleteById(userId);
+        existingUser.setFirstName(userDto.firstName());
+        existingUser.setLastName(userDto.lastName());
+        existingUser.setBirthdate(userDto.birthdate());
+        existingUser.setEmail(userDto.email());
 
+        //userRepository.deleteById(userId);
+        /*
         User updatedUser = new User(
                 userDto.firstName(),
                 userDto.lastName(),
@@ -70,7 +87,9 @@ class UserServiceImpl implements UserService, UserProvider {
                 userDto.email()
         );
 
-        userRepository.save(updatedUser);
+        setUserId(updatedUser, userId);
+        */
+        userRepository.save(existingUser);
     }
 
     @Override

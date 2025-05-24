@@ -30,6 +30,9 @@ class UserApiIntegrationTest extends IntegrationTestBase {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public static User generateUser() {
         return new User(randomUUID().toString(), randomUUID().toString(), LocalDate.now(), randomUUID().toString());
     }
@@ -37,6 +40,12 @@ class UserApiIntegrationTest extends IntegrationTestBase {
     private static User generateUserWithDate(LocalDate date) {
         return new User(randomUUID().toString(), randomUUID().toString(), date, randomUUID().toString());
     }
+
+    private User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new AssertionError("User with ID " + id + " not found"));
+    }
+
 
     @Test
     void shouldReturnAllUsers_whenGettingAllUsers() throws Exception {
@@ -193,7 +202,6 @@ class UserApiIntegrationTest extends IntegrationTestBase {
                 }
                 """.formatted(
                 USER_NAME,
-
                 USER_LAST_NAME,
                 USER_BIRTHDATE,
                 USER_EMAIL);
@@ -201,9 +209,13 @@ class UserApiIntegrationTest extends IntegrationTestBase {
         mockMvc.perform(put("/v1/users/{userId}", user1.getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(updateRequest));
-
+    /*
         List<User> allUsers = getAllUsers();
         User user = allUsers.get(0);
+
+     */
+
+        User user = getUserById(user1.getId());
 
         assertThat(user.getFirstName()).isEqualTo(USER_NAME);
         assertThat(user.getLastName()).isEqualTo(USER_LAST_NAME);
