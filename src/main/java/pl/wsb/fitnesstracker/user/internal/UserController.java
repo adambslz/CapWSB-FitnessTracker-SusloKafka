@@ -1,11 +1,14 @@
 package pl.wsb.fitnesstracker.user.internal;
 
+import pl.wsb.fitnesstracker.user.api.UserDto;
+import pl.wsb.fitnesstracker.user.api.SimpleUserDto;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.wsb.fitnesstracker.user.api.User;
+import pl.wsb.fitnesstracker.user.api.UserService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 class UserController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     private final UserMapper userMapper;
 

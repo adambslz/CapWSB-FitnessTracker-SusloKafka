@@ -7,6 +7,6 @@ import jakarta.annotation.Nullable;
  * @param firstName
  * @param lastName
  */
-record SimpleUserDto(@Nullable Long Id, String firstName, String lastName) {
+public record SimpleUserDto(@Nullable Long Id, String firstName, String lastName) {
 
 }

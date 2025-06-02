@@ -74,7 +74,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
 
         User user1 = existingUser(generateClient());
         Training training1 = persistTraining(generateTraining(user1));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+00:00");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
         mockMvc.perform(get("/v1/trainings").contentType(MediaType.APPLICATION_JSON))
                 .andDo(log())
@@ -99,9 +99,9 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
 
         User user1 = existingUser(generateClient());
         Training training1 = persistTraining(generateTraining(user1));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+00:00");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
-        mockMvc.perform(get("/v1/trainings/{userId}", user1.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/v1/trainings/user/{userId}", user1.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andDo(log())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
@@ -124,7 +124,7 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
         Training training1 = persistTraining(generateTrainingWithDetails(user1, "2024-05-19 19:00:00", "2024-05-19 20:30:00", ActivityType.RUNNING, 14, 11.5));
         persistTraining(generateTrainingWithDetails(user1, "2024-05-17 19:00:00", "2024-05-17 20:30:00", ActivityType.RUNNING, 14, 11.5));
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+00:00");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         sdf.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
         mockMvc.perform(get("/v1/trainings/finished/{afterTime}", "2024-05-18").contentType(MediaType.APPLICATION_JSON))
                 .andDo(log())
@@ -175,8 +175,8 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
         String requestBody = """
                 {
                     "userId": "%s",
-                    "startTime": "2024-04-01T11:00:00",
-                    "endTime": "2024-04-01T11:00:00",
+                    "startTime": "2024-04-01T11:00:00.000Z",
+                    "endTime": "2024-04-01T11:00:00.000Z",
                     "activityType": "RUNNING",
                     "distance": 10.52,
                     "averageSpeed": 8.2
@@ -202,8 +202,8 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
         String requestBody = """
                 {
                 "userId": "%s",
-                "startTime": "2022-04-01T10:00:00",
-                "endTime": "2022-04-01T11:00:00",
+                "startTime": "2022-04-01T10:00:00.000Z",
+                "endTime": "2022-04-01T11:00:00.000Z",
                 "activityType": "TENNIS",
                 "distance": 0.0,
                 "averageSpeed": 0.0
