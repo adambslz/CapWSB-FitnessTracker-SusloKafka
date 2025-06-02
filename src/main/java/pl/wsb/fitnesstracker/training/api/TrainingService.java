@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Interfejs API definiujący operacje na encjach. Odpowiada za logikę biznesową związaną z treningami.
+ */
 public interface TrainingService {
 
     Training createTraining(TrainingDto trainingDto);

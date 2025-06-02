@@ -7,6 +7,9 @@ import pl.wsb.fitnesstracker.training.api.TrainingDto;
 import pl.wsb.fitnesstracker.user.api.User;
 import pl.wsb.fitnesstracker.user.internal.UserMapper;
 
+/**
+ * Komponent odpowiedzialny za mapowanie pomiędzy encjami "Training" a obiektami "TrainingDto".
+ */
 @Component
 @RequiredArgsConstructor
 public class TrainingMapper {

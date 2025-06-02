@@ -8,6 +8,9 @@ import pl.wsb.fitnesstracker.user.api.UserDto;
 
 import java.util.Date;
 
+/**
+ * Obiekt transferu danych (DTO) dla informacji o treningu. Używany do komunikacji z API.
+ */
 public class TrainingDto {
 
     private Long id;

@@ -14,6 +14,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Kontroler REST obsługujący żądania HTTP związane z zarządzaniem treningami.
+ */
 @RestController
 @RequestMapping("/v1/trainings")
 @RequiredArgsConstructor

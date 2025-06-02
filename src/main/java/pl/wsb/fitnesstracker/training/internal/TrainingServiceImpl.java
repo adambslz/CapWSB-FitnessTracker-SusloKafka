@@ -18,6 +18,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
+/**
+ * Implementacja interfejsów "TrainingService" oraz "TrainingProvider".
+ * Odpowiada za logikę biznesową operacji na treningach oraz ich dostarczanie.
+ */
 @Service
 @RequiredArgsConstructor
 public class TrainingServiceImpl implements TrainingService, TrainingProvider { // Implementuje oba interfejsy
